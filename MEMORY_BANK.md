@@ -12,22 +12,20 @@ A high-performance, premium VOC (Voice of Customer) survey application built for
 
 ## Architecture Decisions
 - **Custom Form vs. Google Forms**: Chosen for premium UI/UX, brand consistency, and advanced logic handling.
-- **Brand Identity**: Integrated a centered company logo ("EASY ENGLISH") using `next/image` with hover micro-animations.
+- **Brand Identity**: Integrated Final Refined Logo (`logo_vibrant_amber.png`).
+  - [x] **Based on User Modification**: Strictly preserved the manual layout provided by the user in `logo.png`.
+  - [x] **Technical Finish**: Applied Cyber Yellow (#FFD300) and removed all outer margins (Absolute Transparency) for a clean digital look.
 - **Google Sheets Integration**: Utilizes GAS as a serverless backend to store responses directly in a spreadsheet.
-- **Client-Side Validation**: React state-managed form with interactive feedback.
 - **UI Design**: Uses a clean, modern aesthetic with indigo-based color palette, 3D-like buttons, and smooth transitions.
 
 ## Current State
-- `src/app/page.tsx` contains the main form logic and UI.
-- `src/app/layout.tsx` handles fonts and metadata.
-- `src/app/globals.css` uses Tailwind 4 imports.
-- Submission logic points to a specific GAS executable URL.
+- `src/app/page.tsx` uses the refined `logo_vibrant_amber.png`.
+- Project assets are optimized for Vercel deployment.
 
 ## Implementation Details
-- **Submission**: `fetch` with `mode: 'no-cors'` and `headers: { 'Content-Type': 'text/plain' }`.
-- **Form Data**: Includes skill improvement scores, learning limitations (multi-select), 서술형 (descriptive) answers, and demographic data.
+- **Submission**: `fetch` with `mode: 'no-cors'`.
+- **Branding**: Assets stored in `/public`.
 
 ## Next Steps
-- [ ] Implement advanced analytics if needed.
-- [ ] Add server-side verification if `no-cors` visibility is an issue.
-- [ ] Finalize deployment and test with real data.
+- [ ] Monitor Vercel deployment for any loading issues.
+- [ ] Finalize unit testing for multi-select logic.
