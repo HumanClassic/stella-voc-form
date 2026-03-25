@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 /**
  * VOC Survey Form Component
@@ -124,7 +125,20 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#F8FAFC] py-12 px-4 sm:px-6">
       <div className="max-w-3xl mx-auto">
-        <header className="text-center mb-16">
+        <header className="text-center mb-12">
+          {/* Company Logo */}
+          <div className="flex justify-center mb-8">
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 bg-white rounded-full shadow-xl overflow-hidden border-4 border-white group/logo transition-transform duration-500 hover:scale-105">
+              <Image 
+                src="/logo.png" 
+                alt="Easy English Logo" 
+                fill
+                className="object-cover p-2"
+                priority
+              />
+            </div>
+          </div>
+
           <div className="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest text-indigo-600 uppercase bg-indigo-50 rounded-full">
             REAL EVIDENCE
           </div>
