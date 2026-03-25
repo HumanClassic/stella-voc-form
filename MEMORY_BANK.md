@@ -12,15 +12,16 @@ A high-performance, premium VOC (Voice of Customer) survey application built for
 
 ## Architecture Decisions
 - **Custom Form vs. Google Forms**: Chosen for premium UI/UX, brand consistency, and advanced logic handling.
-- **Brand Identity**: Integrated Final Refined Logo (`logo_vibrant_amber.png`).
+- **Brand Identity**: Integrated Final Verified Logo (`logo_vibrant_amber.png`).
   - [x] **Based on User Modification**: Strictly preserved the manual layout provided by the user in `logo.png`.
-  - [x] **Technical Finish**: Applied Cyber Yellow (#FFD300) and removed all outer margins (Absolute Transparency) for a clean digital look.
+  - [x] **Technical Finish**: Applied Cyber Yellow (#FFD300) and achieved **True Alpha Transparency**.
+  - [x] **Local Verification**: Verified on local dev server (`npm run dev`) to confirm zero checkerboard artifacts before deployment.
 - **Google Sheets Integration**: Utilizes GAS as a serverless backend to store responses directly in a spreadsheet.
 - **UI Design**: Uses a clean, modern aesthetic with indigo-based color palette, 3D-like buttons, and smooth transitions.
 
 ## Current State
 - `src/app/page.tsx` uses the refined `logo_vibrant_amber.png`.
-- Project assets are optimized for Vercel deployment.
+- Project assets are optimized and verified for Vercel deployment.
 
 ## Implementation Details
 - **Submission**: `fetch` with `mode: 'no-cors'`.
