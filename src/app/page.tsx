@@ -128,12 +128,12 @@ export default function Home() {
         <header className="text-center mb-12">
           {/* Company Logo */}
           <div className="flex justify-center mb-8">
-            <div className="relative w-32 h-32 sm:w-40 sm:h-40 bg-white rounded-full shadow-xl overflow-hidden border-4 border-white group/logo transition-transform duration-500 hover:scale-105">
+            <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full shadow-2xl overflow-hidden group/logo transition-all duration-500 hover:scale-110 hover:shadow-indigo-100/50">
               <Image 
                 src="/logo.png" 
                 alt="Easy English Logo" 
                 fill
-                className="object-cover p-2"
+                className="object-contain"
                 priority
               />
             </div>
