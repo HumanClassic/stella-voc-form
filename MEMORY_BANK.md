@@ -21,7 +21,7 @@ A high-performance, premium VOC survey application for **Stella Ssaem's Lecture 
 
 ## Current State
 - `src/app/page.tsx` uses Server Actions for submission.
-- Survey content managed via `src/constants/survey.ts`.
+- Survey content managed via `src/constants/survey.ts` (Examples updated with Stella-specific terminology).
 - Build verification successful (`npm build` passed).
 
 ## Next Steps
