@@ -52,8 +52,6 @@ export interface SurveyData {
   otherPreviousLimitation: string;
 }
 
-export const GAS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzjr3ksIHTWmh-CMZUF8gadhrOc3QAXwppKVJEKWi8f468-YpEdVeAgJd33Mm689Xfr/exec";
-
 export interface Question {
   id: string;
   question: string;

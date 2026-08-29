@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QUESTIONS, SurveyData } from "@/constants/survey";
 import { submitSurveyAction } from "./actions";
 
@@ -21,6 +21,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [csrfToken, setCsrfToken] = useState("");
+  const [utmParams, setUtmParams] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState<SurveyData>({
     skillImprovementScore: "",
     previousLearningLimitations: [],
@@ -36,13 +38,41 @@ export default function Home() {
     otherPreviousLimitation: "",
   });
 
+  useEffect(() => {
+    const metaToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content");
+    if (metaToken) {
+      setCsrfToken(metaToken);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const utms: Record<string, string> = {};
+    params.forEach((value, key) => {
+      utms[key] = value;
+    });
+    setUtmParams(utms);
+
+    const sendHeight = () => {
+      window.parent.postMessage({
+        type: 'RESIZE_IFRAME',
+        height: document.body.scrollHeight
+      }, '*');
+    };
+    
+    const resizeObserver = new ResizeObserver(() => sendHeight());
+    resizeObserver.observe(document.body);
+    
+    sendHeight();
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setErrorMsg("");
 
     try {
-      const result = await submitSurveyAction(formData);
+      const result = await submitSurveyAction(formData, csrfToken, utmParams);
       if (result.success) {
         setSubmitted(true);
         window.scrollTo(0, 0);
@@ -78,6 +108,7 @@ export default function Home() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-8">
+          <input type="hidden" name="csrfToken" value={csrfToken} />
           {QUESTIONS.map((q) => (
             <SurveySection 
               key={q.id} 
