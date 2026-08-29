@@ -21,7 +21,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [csrfToken, setCsrfToken] = useState("");
   const [utmParams, setUtmParams] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState<SurveyData>({
     skillImprovementScore: "",
@@ -39,10 +38,6 @@ export default function Home() {
   });
 
   useEffect(() => {
-    const metaToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute("content");
-    if (metaToken) {
-      setCsrfToken(metaToken);
-    }
 
     const params = new URLSearchParams(window.location.search);
     const utms: Record<string, string> = {};
@@ -72,7 +67,7 @@ export default function Home() {
     setErrorMsg("");
 
     try {
-      const result = await submitSurveyAction(formData, csrfToken, utmParams);
+      const result = await submitSurveyAction(formData, utmParams);
       if (result.success) {
         setSubmitted(true);
         window.scrollTo(0, 0);
@@ -108,7 +103,6 @@ export default function Home() {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          <input type="hidden" name="csrfToken" value={csrfToken} />
           {QUESTIONS.map((q) => (
             <SurveySection 
               key={q.id} 

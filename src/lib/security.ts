@@ -1,7 +1,4 @@
-import crypto from "node:crypto";
-import { cookies, headers } from "next/headers";
-
-export const CSRF_COOKIE_NAME = "survey_csrf";
+import { headers } from "next/headers";
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 5;
 
@@ -48,26 +45,6 @@ export async function validateOrigin(): Promise<void> {
     if (originHost !== hostHeader && !allowedOrigins.has(originHeader)) {
       throw new Error("Origin host mismatch.");
     }
-  }
-}
-
-export function createCsrfToken(): string {
-  return crypto.randomBytes(32).toString("hex");
-}
-
-export async function validateCsrfToken(token: string): Promise<void> {
-  if (!token) {
-    throw new Error("CSRF token missing.");
-  }
-
-  const cookieStore = await cookies();
-  const cookieToken = cookieStore.get(CSRF_COOKIE_NAME)?.value;
-
-  if (!cookieToken || !crypto.timingSafeEqual(
-    Buffer.from(token),
-    Buffer.from(cookieToken),
-  )) {
-    throw new Error("CSRF token invalid.");
   }
 }
 

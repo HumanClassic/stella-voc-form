@@ -2,31 +2,17 @@
 
 import { cookies } from "next/headers";
 import { SurveyData } from "@/constants/survey";
-import { checkRateLimit, createCsrfToken, CSRF_COOKIE_NAME, validateCsrfToken, validateOrigin } from "@/lib/security";
+import { checkRateLimit, validateOrigin } from "@/lib/security";
 import { getGasWebhookUrl, validateSurveyData } from "@/lib/survey-validation";
-
-export async function getCsrfToken() {
-  const token = createCsrfToken();
-  const cookieStore = await cookies();
-  cookieStore.set(CSRF_COOKIE_NAME, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/",
-  });
-
-  return token;
-}
 
 /**
  * Server Action to submit survey data to Google Apps Script.
  * Keeps the external endpoint secret and validates the payload before sending.
  */
-export async function submitSurveyAction(formData: SurveyData, csrfToken: string, utmParams: Record<string, string> = {}) {
+export async function submitSurveyAction(formData: SurveyData, utmParams: Record<string, string> = {}) {
   try {
     await validateOrigin();
     await checkRateLimit();
-    await validateCsrfToken(csrfToken);
 
     const validation = validateSurveyData(formData);
 
