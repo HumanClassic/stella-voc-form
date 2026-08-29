@@ -91,12 +91,11 @@ export function CheckboxGroup({
           </label>
           
           {value.includes("기타") && (
-            <input
-              type="text"
+            <textarea
               placeholder="다른 한계점이 있다면 적어주세요..."
               value={otherValue}
               onChange={(e) => onOtherChange?.(e.target.value)}
-              className="w-full p-4 rounded-2xl bg-white border-2 border-indigo-100 focus:border-indigo-600 focus:outline-none transition-all duration-200 shadow-inner"
+              className="w-full min-h-[100px] p-4 rounded-2xl bg-white border-2 border-indigo-100 focus:border-indigo-600 focus:outline-none transition-all duration-200 shadow-inner resize-y text-base leading-relaxed"
             />
           )}
         </div>
