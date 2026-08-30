@@ -76,7 +76,7 @@ export const QUESTIONS: readonly Question[] = [
   },
   {
     id: "previousLearningLimitations",
-    question: "Q2. 본 강의를 만나기 전, 기존 영어 학습에서 해결되지 않았던 고질적인 문제는 무엇인가요? (중복 선택)",
+    question: "Q2. 본 강의를 만나기 전, 기존 영어 학습에서 해결되지 않았던 고질적인 문제는 무엇인가요? (복수 선택 가능)",
     type: "checkbox",
     options: PREVIOUS_LEARNING_OPTIONS,
     required: true,
