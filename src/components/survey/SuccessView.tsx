@@ -4,7 +4,7 @@ interface SuccessViewProps {
 
 export default function SuccessView({ onReset }: SuccessViewProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-6">
+    <div className="py-24 bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-6 rounded-3xl">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-10 text-center animate-in fade-in zoom-in duration-500">
         <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
           <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

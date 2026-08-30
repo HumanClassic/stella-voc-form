@@ -71,6 +71,7 @@ export default function Home() {
       if (result.success) {
         setSubmitted(true);
         window.scrollTo(0, 0);
+        window.parent.postMessage({ type: 'SCROLL_TO_TOP' }, '*');
       } else {
         setErrorMsg(result.error || "제출 중 오류가 발생했습니다.");
         window.scrollTo({ top: 0, behavior: 'smooth' });
