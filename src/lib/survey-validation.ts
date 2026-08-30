@@ -75,7 +75,7 @@ export function validateSurveyData(input: Partial<SurveyData> | Record<string, u
 
     const previousLearningLimitations = normalizeArray(data.previousLearningLimitations, "previousLearningLimitations");
     const uniquePreviousLearning = Array.from(new Set(previousLearningLimitations)).filter(
-      (value) => PREVIOUS_LEARNING_SET.has(value),
+      (value) => PREVIOUS_LEARNING_SET.has(value) || value === "기타",
     );
 
     if (uniquePreviousLearning.length === 0) {

@@ -32,6 +32,14 @@ export async function validateOrigin(): Promise<void> {
 
   const allowedOrigins = new Set(getAllowedOrigins());
 
+  // [Zero-Trust Fix]: Origin과 Host가 일치하는 1st-party 자체 요청은 Vercel 가변 도메인이어도 허용
+  if (originHeader && hostHeader) {
+    const originHost = new URL(originHeader).host;
+    if (originHost === hostHeader) {
+      return;
+    }
+  }
+
   if (originHeader && !allowedOrigins.has(originHeader)) {
     throw new Error("Origin not allowed.");
   }

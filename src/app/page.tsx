@@ -73,10 +73,12 @@ export default function Home() {
         window.scrollTo(0, 0);
       } else {
         setErrorMsg(result.error || "제출 중 오류가 발생했습니다.");
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     } catch (error) {
       console.error("Submission failed:", error);
       setErrorMsg("통신 오류가 발생했습니다. 다시 시도해 주세요.");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } finally {
       setLoading(false);
     }
